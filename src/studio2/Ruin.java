@@ -50,19 +50,21 @@ public class Ruin {
 				countLose = countLose+1;
 				//System.out.println("You are broke and thrown out of the casino.");ffffff
 				System.out.println("Day " + dayNumber + ": You lost all your money in " + playCount + " plays!");
+				dayNumber = dayNumber + 1;
 			}
 		}
-		double winPercentage = (countWin/(countWin + countLose));
+		double winPercentage = ((double)(countWin)/(double)(countWin + countLose));
 		System.out.println("You won " + (winPercentage * 100) + "% of the time!");
 		double alpha = (1-winChance) / winChance;
 		if (winChance == 0.5)
 		{
-			double expectedRuin = (1- (startAmount / winLimit));
+			double expectedRuin = (1- ((double)startAmount / (double)winLimit));
+			System.out.println("The expected rate of ruin is " + (expectedRuin * 100) + "%.");
 		}
 		else
 		{
-			double expectedRuin = (Math.pow(alpha, dayNumber))
+			double expectedRuin = ((Math.pow(alpha, startAmount)) - (Math.pow(alpha, winLimit))) / (1 - Math.pow(alpha, winLimit));
+			System.out.println("The expected rate of ruin is " + (expectedRuin * 100) + "%.");
 		}
-		System.out.println("The expected rate of ruin is " );
 	}
 }
